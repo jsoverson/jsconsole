@@ -1,6 +1,6 @@
 {
-  "name": "jsconsole",
-  "main": "dist/jsconsole.js",
+  "name": "console.js",
+  "main": "dist/console.js",
   "version": "1.0.0",
   "authors": [
     "Jarrod Overson <jsoverson@gmail.com>"
