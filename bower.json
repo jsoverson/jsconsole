@@ -1,0 +1,24 @@
+{
+  "name": "jsconsole",
+  "main": "dist/jsconsole.js",
+  "version": "1.0.0",
+  "authors": [
+    "Jarrod Overson <jsoverson@gmail.com>"
+  ],
+  "keywords": [
+    "repl",
+    "console",
+    "devtools"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "codemirror": "~5.1.0"
+  }
+}

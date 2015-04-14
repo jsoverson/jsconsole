@@ -1,0 +1,20 @@
+{
+  "name": "console.js",
+  "version": "1.0.0",
+  "description": "A JavaScript repl using codemirror, styled after the devtools console",
+  "main": "dist/console.js",
+  "scripts": {
+    "build": "babel --out-dir dist src",
+    "watch": "babel -w --out-dir dist src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsoverson/console.js.git"
+  },
+  "author": "Jarrod Overson",
+  "license": "MIT",
+  "homepage": "https://github.com/jsoverson/console.js",
+  "devDependencies": {
+    "babel": "^5.0.12"
+  }
+}
