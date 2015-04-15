@@ -74,6 +74,7 @@ var Console = (function(){
         indentUnit: 2,
         undoDepth: 100,
         autofocus: true,
+        lineWrapping: true,
         viewportMargin: Infinity,
         gutters: ['repl']
       });
@@ -83,6 +84,7 @@ var Console = (function(){
         gutters: ['repl'],
         tabSize: 2,
         viewportMargin: Infinity,
+        lineWrapping: true,
         indentUnit: 2,
         readOnly: true
       });
