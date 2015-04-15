@@ -1,5 +1,5 @@
 {
-  "name": "console.js",
+  "name": "jsconsole",
   "main": "dist/console.js",
   "version": "1.0.0",
   "authors": [

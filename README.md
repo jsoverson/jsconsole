@@ -15,7 +15,7 @@ Extensible repl based on CodeMirror. Defaults to evaluating JavaScript in the pa
   <script src="./bower_components/codemirror/lib/codemirror.js"></script>
   <script src="./bower_components/codemirror/mode/javascript/javascript.js"></script>
 
-  <!-- console.js -->
+  <!-- jsconsole -->
   <link rel="stylesheet" href="./styles/console.css">
   <script src="./dist/console.js"></script>
 </head>
