@@ -2,15 +2,16 @@
 
 var Console = (function(){
   class Console {
-    constructor(elementId, options = {}) {
+    constructor(element, options = {}) {
       options.theme = 'eclipse';
       options.mode = 'javascript';
 
-      this.container = document.getElementById(elementId);
+      this.container = element;
       this.container.classList.add('jsconsole');
       this.logBuffer = [];
       this.history = [];
       this.historyIndex = -1;
+      this.events = {};
 
       var enter = () => {
         var text = this.input.getValue().trim();
@@ -85,6 +86,7 @@ var Console = (function(){
         indentUnit: 2,
         readOnly: true
       });
+      this.resetOutput();
 
       this.input.on('focus', () => {
         var cursor = this.output.getCursor();
@@ -121,6 +123,17 @@ var Console = (function(){
       this.input.setMarker = this.output.setMarker = function(line, el) {
         this.setGutterMarker(line, 'repl', el.cloneNode());
       };
+
+      this.resetInput();
+    }
+    on(event, fn) {
+      this.events[event] = fn;
+    }
+    off(event) {
+      delete this.events[event];
+    }
+    trigger(event, data) {
+      if (typeof this.events[event] === 'function') this.events[event](data);
     }
     flushLogBuffer() {
       if (this.logBuffer.length) {
@@ -136,6 +149,7 @@ var Console = (function(){
       this.history.unshift(text);
     }
     appendEntry(input, output) {
+      this.trigger('entry', {input, output});
       var range = this.appendOutput(input.toString().trim());
       this.output.setMarker(range[0].line, previousCommand);
       for (let i = range[0].line; i <= range[1].line; i++) {
@@ -209,6 +223,7 @@ var Console = (function(){
     exec(text) {
       this.isEvaluating = true;
       var rv = this.evaluate(text);
+      if (!rv) return;
       this.isEvaluating = false;
       var doc = this.input.getDoc();
 
@@ -234,7 +249,13 @@ var Console = (function(){
       this.input.execCommand('goDocEnd');
       this.input.setMarker(0, prompt);
     }
+    resetOutput() {
+      // magic number to make things align properly when there is no input;
+      this.output.setSize(null, 8);
+      this.output.setValue('');
+    }
     appendOutput(text) {
+      this.output.setSize(null, 'auto');
       var doc = this.output.getDoc();
       var range;
       if (doc.getLine(doc.lastLine()).match(/^\s*$/)) {

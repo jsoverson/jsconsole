@@ -6,7 +6,7 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 var Console = (function () {
   var Console = (function () {
-    function Console(elementId) {
+    function Console(element) {
       var _this = this;
 
       var options = arguments[1] === undefined ? {} : arguments[1];
@@ -16,11 +16,12 @@ var Console = (function () {
       options.theme = 'eclipse';
       options.mode = 'javascript';
 
-      this.container = document.getElementById(elementId);
+      this.container = element;
       this.container.classList.add('jsconsole');
       this.logBuffer = [];
       this.history = [];
       this.historyIndex = -1;
+      this.events = {};
 
       var enter = function enter() {
         var text = _this.input.getValue().trim();
@@ -95,6 +96,7 @@ var Console = (function () {
         indentUnit: 2,
         readOnly: true
       });
+      this.resetOutput();
 
       this.input.on('focus', function () {
         var cursor = _this.output.getCursor();
@@ -131,9 +133,26 @@ var Console = (function () {
       this.input.setMarker = this.output.setMarker = function (line, el) {
         this.setGutterMarker(line, 'repl', el.cloneNode());
       };
+
+      this.resetInput();
     }
 
     _createClass(Console, [{
+      key: 'on',
+      value: function on(event, fn) {
+        this.events[event] = fn;
+      }
+    }, {
+      key: 'off',
+      value: function off(event) {
+        delete this.events[event];
+      }
+    }, {
+      key: 'trigger',
+      value: function trigger(event, data) {
+        if (typeof this.events[event] === 'function') this.events[event](data);
+      }
+    }, {
       key: 'flushLogBuffer',
       value: function flushLogBuffer() {
         var _this2 = this;
@@ -155,6 +174,7 @@ var Console = (function () {
     }, {
       key: 'appendEntry',
       value: function appendEntry(input, output) {
+        this.trigger('entry', { input: input, output: output });
         var range = this.appendOutput(input.toString().trim());
         this.output.setMarker(range[0].line, previousCommand);
         for (var i = range[0].line; i <= range[1].line; i++) {
@@ -236,7 +256,9 @@ var Console = (function () {
 
         this.isEvaluating = true;
         var rv = this.evaluate(text);
-        this.isEvaluating = false;
+        if (!rv) {
+          return;
+        }this.isEvaluating = false;
         var doc = this.input.getDoc();
 
         if (rv.error && !rv.recoverable) {
@@ -265,8 +287,16 @@ var Console = (function () {
         this.input.setMarker(0, prompt);
       }
     }, {
+      key: 'resetOutput',
+      value: function resetOutput() {
+        // magic number to make things align properly when there is no input;
+        this.output.setSize(null, 8);
+        this.output.setValue('');
+      }
+    }, {
       key: 'appendOutput',
       value: function appendOutput(text) {
+        this.output.setSize(null, 'auto');
         var doc = this.output.getDoc();
         var range;
         if (doc.getLine(doc.lastLine()).match(/^\s*$/)) {
