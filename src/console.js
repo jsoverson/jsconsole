@@ -73,7 +73,6 @@ var Console = (function(){
         tabSize: 2,
         indentUnit: 2,
         undoDepth: 100,
-        autofocus: true,
         lineWrapping: true,
         viewportMargin: Infinity,
         gutters: ['repl']

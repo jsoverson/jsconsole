@@ -15,7 +15,6 @@ var Console = (function () {
 
       options.theme = options.theme || 'eclipse';
       options.mode = options.mode || 'javascript';
-      console.log(options);
 
       this.container = element;
       this.container.classList.add('jsconsole', options.theme);
@@ -84,7 +83,6 @@ var Console = (function () {
         tabSize: 2,
         indentUnit: 2,
         undoDepth: 100,
-        autofocus: true,
         lineWrapping: true,
         viewportMargin: Infinity,
         gutters: ['repl']
