@@ -141,3 +141,30 @@
 .jsconsole.base16-dark .CodeMirror .completion-value-end {
   border-bottom: 1px solid hsl(0, 0%, 20%);
 }
+
+/* dark theme */
+
+.cm-s-dark.CodeMirror {background: #151515; color: #fff;}
+.cm-s-dark .CodeMirror-cursor {border-left: 1px solid #b0b0b0 !important;}
+
+.jsconsole.dark {
+  background-color:#151515;
+}
+
+.jsconsole.dark .CodeMirror-gutter-elt .prompt-continuation:before {
+  color:#3d80f1;
+}
+.jsconsole.dark .jsconsole-output .CodeMirror-code .type-error span {
+  color: #c20000;
+}
+.jsconsole.dark .jsconsole-output .CodeMirror-code .type-undefined span {
+  color: hsl(0, 0%, 83%);
+}
+
+.jsconsole.dark .CodeMirror-code .prev-command span {
+  color: hsl(0, 0%, 83%);
+}
+
+.jsconsole.dark .CodeMirror .completion-value-end {
+  border-bottom: 1px solid hsl(0, 0%, 20%);
+}

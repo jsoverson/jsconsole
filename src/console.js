@@ -5,7 +5,6 @@ var Console = (function(){
     constructor(element, options = {}) {
       options.theme = options.theme || 'eclipse';
       options.mode = options.mode || 'javascript';
-      console.log(options);
 
       this.container = element;
       this.container.classList.add('jsconsole', options.theme);
