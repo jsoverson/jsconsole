@@ -56,7 +56,6 @@
 
 .jsconsole .CodeMirror-gutter-elt .prompt-continuation:before {
   content : '..';
-  color:#3d80f1;
   background:none;
   left:4px;
   top:0px;
@@ -64,10 +63,6 @@
 
 .jsconsole .CodeMirror-code pre {
   padding:3px 4px 2px 4px;
-}
-
-.jsconsole .CodeMirror .completion-value-end {
-  border-bottom: 1px solid hsl(0, 0%, 94%);
 }
 
 .jsconsole .CodeMirror-gutter.repl {
@@ -99,8 +94,50 @@
 .jsconsole .CodeMirror {
   height: auto;
 }
+.jsconsole .CodeMirror-code .prev-command span {
+  font-weight:normal
+}
 
-.jsconsole .jsconsole-output .CodeMirror-code .type-error span {color: red;}
-.jsconsole .jsconsole-output .CodeMirror-code .type-undefined span {color: hsl(0, 0%, 58%);}
+/* eclipse theme */
 
-.jsconsole .CodeMirror-code .prev-command span {color: #0080ff; font-weight:normal}
+.jsconsole.eclipse .CodeMirror-gutter-elt .prompt-continuation:before {
+  color:#3d80f1;
+}
+.jsconsole.eclipse .jsconsole-output .CodeMirror-code .type-error span {
+  color: red;
+}
+.jsconsole.eclipse .jsconsole-output .CodeMirror-code .type-undefined span {
+  color: hsl(0, 0%, 58%);
+}
+
+.jsconsole.eclipse .CodeMirror-code .prev-command span {
+  color: #0080ff;
+}
+
+.jsconsole.eclipse .CodeMirror .completion-value-end {
+  border-bottom: 1px solid hsl(0, 0%, 94%);
+}
+
+/* base16-dark theme */
+
+.jsconsole.base16-dark {
+  background-color:#151515;
+}
+
+.jsconsole.base16-dark .CodeMirror-gutter-elt .prompt-continuation:before {
+  color:#3d80f1;
+}
+.jsconsole.base16-dark .jsconsole-output .CodeMirror-code .type-error span {
+  color: red;
+}
+.jsconsole.base16-dark .jsconsole-output .CodeMirror-code .type-undefined span {
+  color: hsl(0, 0%, 58%);
+}
+
+.jsconsole.base16-dark .CodeMirror-code .prev-command span {
+  color: hsl(210, 100%, 65%);;
+}
+
+.jsconsole.base16-dark .CodeMirror .completion-value-end {
+  border-bottom: 1px solid hsl(0, 0%, 20%);
+}

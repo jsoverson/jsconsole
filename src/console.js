@@ -3,11 +3,12 @@
 var Console = (function(){
   class Console {
     constructor(element, options = {}) {
-      options.theme = 'eclipse';
-      options.mode = 'javascript';
+      options.theme = options.theme || 'eclipse';
+      options.mode = options.mode || 'javascript';
+      console.log(options);
 
       this.container = element;
-      this.container.classList.add('jsconsole');
+      this.container.classList.add('jsconsole', options.theme);
       this.logBuffer = [];
       this.history = [];
       this.historyIndex = -1;
