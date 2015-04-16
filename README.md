@@ -2,6 +2,10 @@ jsconsole
 ---------
 Extensible repl based on CodeMirror. Defaults to evaluating JavaScript in the page's context but exposes a mechanism to override the evaluation logic.
 
+[Demo here](http://jsoverson.github.io/jsconsole/)
+
+<img src="https://raw.githubusercontent.com/jsoverson/jsconsole/master/screenshot.png">
+
 ## Usage
 
 ### Initialization
